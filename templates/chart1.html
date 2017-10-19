@@ -1,0 +1,26 @@
+{% extends "main.html" %}
+{% block content %}
+<form method=post action="">
+<table>
+  {% for field in form %}
+    <tr>
+    <td class="name">{{ field.name }}</td><td>{{ field(size=12) }}</td>
+    <td>{{ field.label }}</td>
+    {% if field.errors %}
+      <td><ul class=errors>
+      {% for error in field.errors %}
+        <li><font color="red">{{ error }}</font></li>
+      {% endfor %}</ul></td>
+    {% endif %}
+    </tr>
+  {% endfor %}
+</table>
+<p><input type=submit value=Vis></form></p>
+<p>
+{% if result != None %}
+<div id="chart">
+   <embed type="image/svg+xml" src= {{ chart|safe }} />
+</div>
+{% endif %}
+</p>
+{% endblock %}
